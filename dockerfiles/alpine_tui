@@ -1,33 +1,22 @@
-FROM --platform=i386 i386/alpine:3.19
+FROM --platform=i386 i386/alpine:3.18
 
-# Install TUI apps
 RUN apk update && apk add --no-cache \
     bash \
+    coreutils \
     htop \
     mc \
     ncdu \
-    tmux \
     vim \
-    neofetch \
-    cmatrix \
-    curl \
-    git \
-    python3 \
-    ranger \
     nano \
-    procps \
-    util-linux
+    curl
 
-# Create user
 RUN adduser -D -s /bin/bash user && echo "user:password" | chpasswd
 
-# Set up nice welcome
-RUN echo 'echo "Welcome to TUI Sandbox!"' >> /home/user/.bashrc && \
-    echo 'echo "Try: htop, mc, ranger, ncdu, cmatrix, neofetch"' >> /home/user/.bashrc && \
-    echo 'echo ""' >> /home/user/.bashrc
+RUN echo 'echo "=== TUI Sandbox ==="' >> /home/user/.bashrc && \
+    echo 'echo "Try: htop, mc, ncdu"' >> /home/user/.bashrc
 
 WORKDIR /home/user/
-ENV HOME="/home/user" TERM="xterm-256color" USER="user" SHELL="/bin/bash"
+ENV HOME="/home/user" TERM="xterm" USER="user" SHELL="/bin/bash"
 RUN echo 'root:password' | chpasswd
 
 CMD [ "/bin/bash" ]
