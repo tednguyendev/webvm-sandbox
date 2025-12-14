@@ -1,0 +1,17 @@
+node_modules
+.git
+.github
+.circleci
+*.md
+*.txt
+LICENSE*
+documents
+examples
+assets
+src
+*.js
+*.json
+*.css
+*.html
+*.ico
+xterm
